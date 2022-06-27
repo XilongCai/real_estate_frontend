@@ -25,7 +25,6 @@ import {
 	Snackbar,
 	Alert,
     } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import Axios from "axios";
 import { useImmerReducer } from "use-immer";
 
@@ -62,34 +61,6 @@ import Redbridge from "./Assets/Boroughs/Redbridge";
 import Richmond from "./Assets/Boroughs/Richmond";
 import Sutton from "./Assets/Boroughs/Sutton";
 import Waltham from "./Assets/Boroughs/Waltham";
-
-const useStyles = makeStyles({
-    formContainer: {
-        width: '75%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '3rem',
-        border: '5px solid black',
-        padding: '3rem',
-    },
-    registerBtn: {
-        backgroundColor: 'green',
-        color: 'white',
-        fontSize: '1.1rem',
-        marginLeft: '1rem',
-        '&:hover': {
-            backgroundColor: 'blue'
-        },
-    },
-
-    picturesBtn: {
-        backgroundColor: 'blue',
-        color: 'white',
-        fontSize: '0.8rem',
-        border: '1px solid black',
-        marginLeft: '1rem',
-    },
-});
 
 const areaOptions = [
     {
@@ -306,7 +277,6 @@ const rentalFrequencyOptions = [
 ];
 
 function AddProperty() {
-    const classes = useStyles();
     const navigate = useNavigate();
 	const globalState = useContext(StateContext)
 
@@ -957,7 +927,15 @@ function AddProperty() {
 				return (<Button 
 							variant="contained" 
 							fullWidth type="submit" 
-							className={classes.registerBtn}
+							style={{
+								backgroundColor: 'green',
+								color: 'white',
+								fontSize: '1.1rem',
+								marginLeft: '1rem',
+								'&:hover': {
+									backgroundColor: 'blue'
+								},
+							}}	
 							disabled={state.disabledBtn}>SUBMIT</Button>);
 			} else if (globalState.userIsLogged && (state.userProfile.agencyName !== null
 				|| state.userProfile.phoneNumber !== null || state.userProfile.agencyName !== ''
@@ -968,7 +946,15 @@ function AddProperty() {
 							fullWidth 
 							disabled
 							onClick={() => navigate("/profile")}
-							className={classes.registerBtn}>
+							style={{
+								backgroundColor: 'green',
+								color: 'white',
+								fontSize: '1.1rem',
+								marginLeft: '1rem',
+								'&:hover': {
+									backgroundColor: 'blue'
+								},
+							}}>
 								COMPLETE YOUR PROFILE TO ADD A PROPERTY
 						</Button>);
 				} else if (!globalState.userIsLogged) {
@@ -978,7 +964,15 @@ function AddProperty() {
 							fullWidth 
 							disabled
 							onClick={() => navigate("/login")}
-							className={classes.registerBtn}>
+							style={{
+								backgroundColor: 'green',
+								color: 'white',
+								fontSize: '1.1rem',
+								marginLeft: '1rem',
+								'&:hover': {
+									backgroundColor: 'blue'
+								},
+							}}>
 								SIGN IN TO ADD A PROPERTY
 						</Button>
 					);
@@ -994,7 +988,14 @@ function AddProperty() {
     }, [state.openSnack]);
 
     return (
-        <div className={classes.formContainer}>
+        <div style={{
+			width: '75%',
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			marginTop: '3rem',
+			border: '5px solid black',
+			padding: '3rem',
+		}}>
             <form onSubmit={formSubmit}>
                 <Grid item container justifyContent="center">
                     <Typography variant="h4">SUBMIT A PROPERTY</Typography>
@@ -1229,7 +1230,13 @@ function AddProperty() {
                 </Grid>
 
                 <Grid item container xs={6} style={{marginTop: '1rem', marginLeft: "auto", marginRight: "auto"}}>
-                    <Button variant="contained" component="label" fullWidth className={classes.picturesBtn}>UPLOAD PICTURE
+                    <Button variant="contained" component="label" fullWidth style={{
+						backgroundColor: 'blue',
+						color: 'white',
+						fontSize: '0.8rem',
+						border: '1px solid black',
+						marginLeft: '1rem',
+					}}>UPLOAD PICTURE
                         <input type="file" multiple accept="image/png, image/gif, image/jpeg" hidden
                         onChange={(e) => dispatch({type: 'catchUploadedPictures', pictureChosen: e.target.files})}/>
                     </Button>

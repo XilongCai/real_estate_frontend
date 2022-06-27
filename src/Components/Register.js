@@ -15,35 +15,14 @@ import {
     Snackbar,
     Alert,
     } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useImmerReducer } from "use-immer";
 //Component
 import DispatchContext from "../Contexts/DispatchContext";
 import StateContext from "../Contexts/StateContext";
 
-const useStyles = makeStyles({
-    formContainer: {
-        width: '50%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '3rem',
-        border: '5px solid black',
-        padding: '3rem',
-    },
-    registerBtn: {
-        backgroundColor: 'green',
-        color: 'white',
-        fontSize: '1.1rem',
-        marginLeft: '1rem',
-        '&:hover': {
-            backgroundColor: 'blue'
-        },
-    },
-});
 
 function Register() {
-    const classes = useStyles();
     const navigate = useNavigate();
 
     const globalDispatch = useContext(DispatchContext);
@@ -283,7 +262,14 @@ function Register() {
     }, [state.token]);
 
     return (
-        <div className={classes.formContainer}>
+        <div style={{
+            width: '50%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: '3rem',
+            border: '5px solid black',
+            padding: '3rem',
+        }}>
             <form onSubmit={formSubmit}>
                 <Grid item container justifyContent="center">
                     <Typography variant="h4">CREATE AN ACCOUNT</Typography>
@@ -342,7 +328,15 @@ function Register() {
                         helperText={state.rePasswordHelperText}/>
                 </Grid>
                 <Grid item container xs={8} style={{marginTop: '1rem', marginLeft: "auto", marginRight: "auto"}}>
-                    <Button variant="contained" fullWidth type="submit" className={classes.registerBtn} disabled={state.disabledBtn}>SIGN UP</Button>
+                    <Button variant="contained" fullWidth type="submit" style={{
+                        backgroundColor: 'green',
+                        color: 'white',
+                        fontSize: '1.1rem',
+                        marginLeft: '1rem',
+                        '&:hover': {
+                            backgroundColor: 'blue'
+                        },
+                    }} disabled={state.disabledBtn}>SIGN UP</Button>
                 </Grid>
             </form>
             <Grid item container justifyContent="center" style={{marginTop: '1rem'}}>

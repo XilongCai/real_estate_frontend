@@ -21,37 +21,9 @@ import {
 	IconButton,
     Snackbar,
     } from "@mui/material";
-import { makeStyles, propsToClassKey } from "@mui/styles";
 import Axios from "axios";
 import { useImmerReducer } from "use-immer";
 
-const useStyles = makeStyles({
-    formContainer: {
-        width: '75%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '3rem',
-        border: '5px solid black',
-        padding: '3rem',
-    },
-    registerBtn: {
-        backgroundColor: 'green',
-        color: 'white',
-        fontSize: '1.1rem',
-        marginLeft: '1rem',
-        '&:hover': {
-            backgroundColor: 'blue'
-        },
-    },
-
-    picturesBtn: {
-        backgroundColor: 'blue',
-        color: 'white',
-        fontSize: '0.8rem',
-        border: '1px solid black',
-        marginLeft: '1rem',
-    },
-});
 
 const listingTypeOptions = [
 	{
@@ -107,7 +79,6 @@ const rentalFrequencyOptions = [
 ];
 
 function ListingUpdate(props) {
-    const classes = useStyles();
     const navigate = useNavigate();
 	const globalState = useContext(StateContext)
 
@@ -248,7 +219,14 @@ function ListingUpdate(props) {
     }, [state.openSnack]);
 
     return (
-        <div className={classes.formContainer}>
+        <div style={{
+			width: '75%',
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			marginTop: '3rem',
+			border: '5px solid black',
+			padding: '3rem',
+		}}>
             <form onSubmit={formSubmit}>
                 <Grid item container justifyContent="center">
                     <Typography variant="h4">UPDATE A LISTING</Typography>
@@ -399,7 +377,15 @@ function ListingUpdate(props) {
 				</Grid>
 
                 <Grid item container xs={8} style={{marginTop: '1rem', marginLeft: "auto", marginRight: "auto"}}>
-                    <Button variant="contained" fullWidth type="submit" className={classes.registerBtn} disabled={state.disabledBtn}>UPDATE</Button>
+                    <Button variant="contained" fullWidth type="submit" style={{
+						backgroundColor: 'green',
+						color: 'white',
+						fontSize: '1.1rem',
+						marginLeft: '1rem',
+						'&:hover': {
+							backgroundColor: 'blue'
+						},
+					}} disabled={state.disabledBtn}>UPDATE</Button>
                 </Grid>
             </form>
             <Button variant="contained" onClick={props.closeDialog}>CANCEL</Button>

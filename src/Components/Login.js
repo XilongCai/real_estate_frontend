@@ -17,34 +17,13 @@ import {
     Snackbar,
     Alert,
     } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 
 // Contexts
 import DispatchContext from "../Contexts/DispatchContext";
 import StateContext from "../Contexts/StateContext";
 
-const useStyles = makeStyles({
-    formContainer: {
-        width: '50%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '3rem',
-        border: '5px solid black',
-        padding: '3rem',
-    },
-    loginBtn: {
-        backgroundColor: 'green',
-        color: 'white',
-        fontSize: '1.1rem',
-        marginLeft: '1rem',
-        '&:hover': {
-            backgroundColor: 'blue'
-        },
-    },
-});
 
 function Login() {
-    const classes = useStyles();
     const navigate = useNavigate();
 
     const globalDispatch = useContext(DispatchContext);
@@ -165,7 +144,14 @@ function Login() {
 
 
     return (
-        <div className={classes.formContainer}>
+        <div style={{
+            width: '50%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: '3rem',
+            border: '5px solid black',
+            padding: '3rem',
+        }}>
             <form onSubmit={formSubmit}>
                 <Grid item container justifyContent="center">
                     <Typography variant="h4">SIGN IN</Typography>
@@ -198,7 +184,15 @@ function Login() {
                         />
                 </Grid>
                 <Grid item container xs={8} style={{marginTop: '1rem', marginLeft: "auto", marginRight: "auto"}}>
-                    <Button variant="contained" fullWidth type="submit" className={classes.loginBtn} disabled={state.disabledBtn}>SIGN IN</Button>
+                    <Button variant="contained" fullWidth type="submit" style={{
+                        backgroundColor: 'green',
+                        color: 'white',
+                        fontSize: '1.1rem',
+                        marginLeft: '1rem',
+                        '&:hover': {
+                            backgroundColor: 'blue'
+                        },
+                    }} disabled={state.disabledBtn}>SIGN IN</Button>
                 </Grid>
             </form>
 

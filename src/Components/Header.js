@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 // MUI
 import { Button, Typography, Grid, AppBar, Toolbar, Menu, MenuItem, Snackbar, } from "@mui/material"
-import { makeStyles } from "@mui/styles";
 
 // Contexts
 import StateContext from "../Contexts/StateContext";
@@ -11,60 +10,7 @@ import DispatchContext from "../Contexts/DispatchContext";
 import axios from "axios";
 
 
-
-const useStyles = makeStyles({
-    leftNav: {
-        marginRight: 'auto'
-    },
-
-    rightNav: {
-        marginLeft: 'auto',
-        marginRight: '10rem'
-    },
-
-    propertyBtn: {
-        backgroundColor: 'green',
-        color: 'white',
-        width: '15rem',
-        fontSize: '1.1rem',
-        marginRight: '1rem',
-        '&:hover': {
-            backgroundColor: 'blue'
-        }
-    },
-
-    loginBtn: {
-        backgroundColor: 'white',
-        color: 'black',
-        width: '15rem',
-        fontSize: '1.1rem',
-        marginLeft: '1rem',
-        '&:hover': {
-            backgroundColor: 'green'
-        }
-    },
-
-    profileBtn: {
-        color: 'black',
-        backgroundColor: 'green',
-        width: '15rem',
-        fontWeight: 'bolder',
-        borderRadius: '15px',
-        marginBottom: '0.25rem',
-    },
-
-    logoutBtn: {
-        color: 'black',
-        backgroundColor: 'red',
-        width: '15rem',
-        fontWeight: 'bolder',
-        borderRadius: '15px',
-    },
-});
-
-
 function Header() {
-    const classes = useStyles();
     const navigate = useNavigate();
     const globalState = useContext(StateContext);
     const globalDispatch = useContext(DispatchContext);
@@ -114,7 +60,7 @@ function Header() {
     return (
         <AppBar position="static" style={{ backgroundColor: 'black' }}>
             <Toolbar>
-                <div className={classes.leftNav}>
+                <div style={{marginRight: 'auto'}}>
                     <Button color="inherit" onClick={() => navigate('/')}><Typography variant="h4">Real Estate</Typography></Button>
                 </div>
                 <div>
@@ -125,11 +71,41 @@ function Header() {
                         <Typography variant="h6">Agencies</Typography>{" "}
                     </Button>
                 </div>
-                <div className={classes.rightNav}>
-                    <Button onClick={() => navigate("/addproperty")} className={classes.propertyBtn}>Add Property</Button>
+                <div style={{
+                    marginLeft: 'auto',
+                    marginRight: '10rem'
+                }}>
+                    <Button onClick={() => navigate("/addproperty")} style={{
+                        backgroundColor: 'green',
+                        color: 'white',
+                        width: '15rem',
+                        fontSize: '1.1rem',
+                        marginRight: '1rem',
+                        '&:hover': {
+                            backgroundColor: 'blue'
+                        }
+                    }}>Add Property</Button>
                     {globalState.userIsLogged ?
-                    (<Button className={classes.loginBtn}  onClick={handleClick}>{globalState.userUsername}</Button>) : 
-                    (<Button className={classes.loginBtn}  onClick={() => navigate('/login')}>Login</Button>)}
+                    (<Button style={{
+                        backgroundColor: 'white',
+                        color: 'black',
+                        width: '15rem',
+                        fontSize: '1.1rem',
+                        marginLeft: '1rem',
+                        '&:hover': {
+                            backgroundColor: 'green'
+                        }
+                    }}  onClick={handleClick}>{globalState.userUsername}</Button>) : 
+                    (<Button style={{
+                        backgroundColor: 'white',
+                        color: 'black',
+                        width: '15rem',
+                        fontSize: '1.1rem',
+                        marginLeft: '1rem',
+                        '&:hover': {
+                            backgroundColor: 'green'
+                        }
+                    }}  onClick={() => navigate('/login')}>Login</Button>)}
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
@@ -139,8 +115,21 @@ function Header() {
                         'aria-labelledby': 'basic-button',
                         }}
                     >
-                        <MenuItem className={classes.profileBtn} onClick={handleProfile}>Profile</MenuItem>
-                        <MenuItem className={classes.logoutBtn} onClick={handleLogout}>Logout</MenuItem>
+                        <MenuItem style={{
+                            color: 'black',
+                            backgroundColor: 'green',
+                            width: '15rem',
+                            fontWeight: 'bolder',
+                            borderRadius: '15px',
+                            marginBottom: '0.25rem',
+                        }} onClick={handleProfile}>Profile</MenuItem>
+                        <MenuItem style={{
+                            color: 'black',
+                            backgroundColor: 'red',
+                            width: '15rem',
+                            fontWeight: 'bolder',
+                            borderRadius: '15px',
+                        }} onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                     <Snackbar
                         open={openSnack}

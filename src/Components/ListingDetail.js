@@ -44,17 +44,8 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import RoomIcon from "@mui/icons-material/Room";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles({
-    sliderContainer: {
-        position: 'relative',
-        marginTop: '1rem',
-    }
-});
 
 function ListingDetail() {
-    const classes = useStyles();
     const navigate = useNavigate();
     const GlobalState = useContext(StateContext);
 
@@ -215,7 +206,10 @@ function ListingDetail() {
             </Breadcrumbs>
         </Grid>
 
-        <Grid item container justifyContent='center' className={classes.sliderContainer}>
+        <Grid item container justifyContent='center' style={{
+            position: 'relative',
+            marginTop: '1rem',
+        }}>
             <div>
                 <img src={state.listingInfo.picture1} style={{ width: '20rem', height: '20rem' }} />
             </div>
