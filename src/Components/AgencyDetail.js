@@ -71,7 +71,7 @@ function AgencyDetail() {
         async function GetProfileInfo() {
             try {
                 const response = await Axios.get(
-                    `http://localhost:8000/api/profiles/${params.id}/`
+                    `https://www.lbrepapi.com/api/profiles/${params.id}/`
                 );
 
                 console.log(response)
@@ -168,7 +168,7 @@ function AgencyDetail() {
                                     <CardMedia
                                         component="img"
                                         height="140"
-                                        image={`http://localhost:8000${listing.picture1}` ? `http://localhost:8000${listing.picture1}` : defaultProfilePicture}
+                                        image={`https://www.lbrepapi.com${listing.picture1}` ? `https://www.lbrepapi.com${listing.picture1}` : defaultProfilePicture}
                                         alt="Profile Picture"
                                         onClick={() => navigate(`/listings/${listing.id}`)}
                                         style={{cursor: 'pointer'}}

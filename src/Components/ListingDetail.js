@@ -109,7 +109,7 @@ function ListingDetail() {
             try {
                 console.log(params.id);
                 const response = await Axios.get(
-                    `http://localhost:8000/api/listings/${params.id}`);
+                    `https://www.lbrepapi.com/api/listings/${params.id}`);
 
                 dispatch({
                     type: "catchListingInfo",
@@ -129,7 +129,7 @@ function ListingDetail() {
             async function GetProfileInfo() {
                 try {
                     const response = await Axios.get(
-                        `http://localhost:8000/api/profiles/${state.listingInfo.seller}/`
+                        `https://www.lbrepapi.com/api/profiles/${state.listingInfo.seller}/`
                     );
 
                     console.log(response);
@@ -160,7 +160,7 @@ function ListingDetail() {
         const confirmDelete = window.confirm('Are you sure to delete this listing?');
         if (confirmDelete) {
             try {
-                const response = await Axios.delete(`http://localhost:8000/api/listings/${params.id}/delete/`);
+                const response = await Axios.delete(`https://www.lbrepapi.com/api/listings/${params.id}/delete/`);
                 dispatch({type: "openTheSnack"});
                 dispatch({type: "disableTheButton"});
             } catch(e) {

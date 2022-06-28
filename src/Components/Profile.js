@@ -69,7 +69,7 @@ function Profile() {
 		async function GetProfileInfo() {
 			try {
 				const response = await Axios.get(
-					`http://localhost:8000/api/profiles/${GlobalState.userId}/`
+					`https://www.lbrepapi.com/api/profiles/${GlobalState.userId}/`
 				);
 
 				dispatch({

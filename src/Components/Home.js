@@ -9,7 +9,7 @@ import { color } from "@mui/system";
 import Header from "./Header";
 
 // Assets
-import city from './Assets/city.jpg'
+import img1 from './Assets/img1.jpg'
 
 
 export function Home() {
@@ -18,7 +18,7 @@ export function Home() {
     return (
         <>
             <div style={{ position: 'relative' }}>
-                <img src={city} style={{
+                <img src={img1} style={{
                     width: '100%',
                     height: '92vh'
                 }} />

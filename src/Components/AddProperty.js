@@ -831,7 +831,7 @@ function AddProperty() {
 	useEffect(() => {
 		async function getProfileInfo() {
 			try {
-				const response = await Axios.get(`http://localhost:8000/api/profiles/${globalState.userId}/`);
+				const response = await Axios.get(`https://www.lbrepapi.com/api/profiles/${globalState.userId}/`);
 				dispatch({type: 'catchUserProfileInfo', profileObject: response.data});
 			} catch(e) {
 				console.log(e.response)
@@ -897,7 +897,7 @@ function AddProperty() {
 				formData.append('seller', globalState.userId);
 				console.log(formData);
 				try {
-					const response = await Axios.post("http://localhost:8000/api/listings/create/", formData);
+					const response = await Axios.post("https://www.lbrepapi.com/api/listings/create/", formData);
 					dispatch({type: 'openTheSnack'});
 				} catch(e) {
 					dispatch({type: 'allowTheButton'});

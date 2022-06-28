@@ -36,7 +36,7 @@ function Header() {
         if (confirmLogout) {
             try {
                 const response = await axios.post(
-                    "http://localhost:8000/api-auth-djoser/token/logout/", 
+                    "https://www.lbrepapi.com/api-auth-djoser/token/logout/", 
                     globalState.userToken, 
                     {headers: {Authorization: "Token ".concat(globalState.userToken)}}
                 );
