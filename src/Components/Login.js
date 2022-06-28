@@ -84,7 +84,7 @@ function Login() {
             async function signIn() {
                 try {
                     const response = await axios.post(
-                        "https://www.lbrepapi.com/api-auth-djoser/token/login",
+                        "https://lbrepapi.com/api-auth-djoser/token/login",
                         {
                             username: state.usernameValue,
                             password: state.passwordValue,
@@ -112,7 +112,7 @@ function Login() {
             async function getUserInfo() {
                 try {
                     const response = await axios.get(
-                        "https://www.lbrepapi.com/api-auth-djoser/users/me",
+                        "https://lbrepapi.com/api-auth-djoser/users/me",
                         {
                             headers: {Authorization: 'Token '.concat(state.token)}
                         }, { cancelToken: source.token });

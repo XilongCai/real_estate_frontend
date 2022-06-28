@@ -59,7 +59,7 @@ function Listings() {
         const source = axios.CancelToken.source();
         async function getAllListings() {
             try {
-                const response = await axios.get("https://www.lbrepapi.com/api/listings/", { cancelToken: source.token });
+                const response = await axios.get("https://lbrepapi.com/api/listings/", { cancelToken: source.token });
                 setAllListings(response.data);
                 setDataIsLoading(false);
                 console.log("haha")

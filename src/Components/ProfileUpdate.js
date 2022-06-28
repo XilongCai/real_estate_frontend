@@ -115,7 +115,7 @@ function ProfileUpdate(props) {
 
 				try {
 					const response = await Axios.patch(
-						`https://www.lbrepapi.com/api/profiles/${GlobalState.userId}/update/`,
+						`https://lbrepapi.com/api/profiles/${GlobalState.userId}/update/`,
 						formData
 					);
 

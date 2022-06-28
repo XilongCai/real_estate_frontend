@@ -57,7 +57,7 @@ function Agencies() {
 		async function getAgencies() {
 			try {
 				const response = await Axios.get(
-					`https://www.lbrepapi.com/api/profiles/`
+					`https://lbrepapi.com/api/profiles/`
 				);
 
 				dispatch({
