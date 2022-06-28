@@ -17,16 +17,10 @@ import {
     } from "@mui/material";
 import axios from "axios";
 import { useImmerReducer } from "use-immer";
-//Component
-import DispatchContext from "../Contexts/DispatchContext";
-import StateContext from "../Contexts/StateContext";
 
 
 function Register() {
     const navigate = useNavigate();
-
-    const globalDispatch = useContext(DispatchContext);
-    const globalState = useContext(StateContext);
 
     const initialState = {
         usernameValue: '',
@@ -34,10 +28,8 @@ function Register() {
         passwordValue: '',
         rePasswordValue: '',
         sendRequest: 0,
-        token: '',
         openSnack: false,
         disabledBtn: false,
-        signUp: false,
         usernameErrors: {
             hasErrors: false,
             errorMessage: '',
@@ -140,12 +132,6 @@ function Register() {
             case "numericPassword":
                 draft.serverMessageNumericPassword = 'This password is entirely numeric';
                 break;
-            case "signUp":
-                draft.signUp = true;
-                break;
-            case 'catchToken':
-                draft.token = action.tokenValue;
-                break;
 
         }
     }
@@ -177,7 +163,6 @@ function Register() {
                             re_password: state.rePasswordValue,
                         }, { cancelToken: source.token });
                     dispatch({type: 'openTheSnack'});
-                    dispatch({type: 'signUp'});
                 } catch (error) {
                     dispatch({type: 'allowTheButton'});
                     console.log(error.response);
@@ -204,62 +189,10 @@ function Register() {
     useEffect(() => {
         if (state.openSnack) {
             setTimeout(() => {
+                navigate("/created");
             }, 1500);
         }
     }, [state.openSnack]);
-
-    useEffect(() => {
-        if (state.signUp) {
-            const source = axios.CancelToken.source();
-            async function signIn() {
-                try {
-                    const response = await axios.post(
-                        "https://lbrepapi.com/api-auth-djoser/token/login",
-                        {
-                            username: state.usernameValue,
-                            password: state.passwordValue,
-                        }, { cancelToken: source.token });
-                    dispatch({type: 'catchToken', tokenValue: response.data.auth_token});
-                    globalDispatch({type: 'catchToken', tokenValue: response.data.auth_token});
-                    // console.log(response.data)
-                } catch (error) {
-                    console.log(error.response);
-                }
-            }
-            signIn();
-            return () => {
-                source.cancel();
-            }
-        }
-    }, [state.signUp]);
-
-    useEffect(() => {
-        if (state.token !== '') {
-            const source = axios.CancelToken.source();
-            async function getUserInfo() {
-                try {
-                    const response = await axios.get(
-                        "https://lbrepapi.com/api-auth-djoser/users/me",
-                        {
-                            headers: {Authorization: 'Token '.concat(state.token)}
-                        }, { cancelToken: source.token });
-                    globalDispatch({
-                        type: 'userSignsIn', 
-                        usernameInfo: response.data.username,
-                        emailInfo: response.data.email,
-                        idInfo: response.data.id,
-                    });
-                    navigate("/");
-                } catch (error) {
-                    console.log(error.response);
-                }
-            }
-            getUserInfo();
-            return () => {
-                source.cancel();
-            }
-        }
-    }, [state.token]);
 
     return (
         <div style={{

@@ -10,6 +10,7 @@ import Header from "./Header";
 
 // Assets
 import img1 from './Assets/img1.jpg'
+import city from './Assets/city.jpg'
 
 
 export function Home() {
@@ -18,7 +19,8 @@ export function Home() {
     return (
         <>
             <div style={{ position: 'relative' }}>
-                <img src={img1} style={{
+                <img src={new Date().getHours() <= 19 && new Date().getHours() >= 7 
+                ? img1 : city} style={{
                     width: '100%',
                     height: '92vh'
                 }} />
